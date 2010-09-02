@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import paypalx
 from setuptools import setup, find_packages
 
 VERSION = 0.1
@@ -17,7 +16,7 @@ CLASSIFIERS = [
 KEYWORDS = 'paypal api x adaptive paiements accounts'
 
 setup(name = 'paypalx',
-    version = paypalx.VERSION,
+    version = VERSION,
     description = 'Paypal X API implementation in Python.',
     long_description = """An inmplemtation of Paypal X's API in Python. Featuring
     Adaptive API""",
