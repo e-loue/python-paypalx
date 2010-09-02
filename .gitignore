@@ -1,0 +1,7 @@
+*.pyc
+*.tmproj
+.DS_Store
+.noseids
+.coverage
+.env
+tests/credentials.py
