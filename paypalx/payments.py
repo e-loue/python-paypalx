@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from paypalx import AdaptiveAPI
 
-class PaymentsAPI(AdaptiveAPI):
+class Payments(AdaptiveAPI):
     def __init__(self, username, password, signature, application_id, email, sandbox=False):
-        super(PaymentsAPI, self).__init__(username, password, signature, application_id, email, 'AdaptivePayments', sandbox)
+        super(Payments, self).__init__(username, password, signature, application_id, email, 'AdaptivePayments', sandbox)
     
     def pay_request(self, **kwargs):
         if 'requestEnvelope' not in kwargs:

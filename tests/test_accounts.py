@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest import TestCase
-from paypalx.accounts import AccountsAPI
+from paypalx.accounts import Accounts
 
 try:
     import credentials
@@ -21,7 +21,7 @@ class TestAdaptiveAccounts(TestCase):
     return_url = "http://return.me"
     
     def setUp(self):
-        self.paypal = AccountsAPI(API_USERNAME, API_PASSWORD, API_SIGNATURE, API_APPLICATION_ID, API_EMAIL, sandbox=True)
+        self.paypal = Accounts(API_USERNAME, API_PASSWORD, API_SIGNATURE, API_APPLICATION_ID, API_EMAIL, sandbox=True)
         self.paypal.debug = False
     
     def test_create_account(self):
@@ -112,8 +112,7 @@ class TestAdaptiveAccounts(TestCase):
         )['fundingSourceKey']
         response = self.paypal.set_funding_source_confirmed(
             emailAddress = "joey.triviani@paypal.com",
-            fundingSourceKey = fundingSourceKey,
-            createAccountKey = createAccountKey
+            fundingSourceKey = fundingSourceKey
         )
         self.assertEquals(response['responseEnvelope']['ack'], "Success")
     

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 from unittest import TestCase
-from paypalx.payments import PaymentsAPI
+from paypalx.payments import Payments
 
 try:
     import credentials
@@ -25,7 +25,7 @@ class TestAdaptivePayments(TestCase):
     cancel_url = "http://cancel.me"
     
     def setUp(self):
-        self.paypal = PaymentsAPI(API_USERNAME, API_PASSWORD, API_SIGNATURE, API_APPLICATION_ID, API_EMAIL, sandbox=True)
+        self.paypal = Payments(API_USERNAME, API_PASSWORD, API_SIGNATURE, API_APPLICATION_ID, API_EMAIL, sandbox=True)
         self.paypal.debug = False
     
     def test_pay_request(self):
