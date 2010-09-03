@@ -28,8 +28,8 @@ class TestAdaptivePayments(TestCase):
         self.paypal = AdaptivePayments(API_USERNAME, API_PASSWORD, API_SIGNATURE, API_APPLICATION_ID, API_EMAIL, sandbox=True)
         self.paypal.debug = False
     
-    def test_pay_request(self):
-        response = self.paypal.pay_request(
+    def test_pay(self):
+        response = self.paypal.pay(
             actionType = 'PAY',
             cancelUrl = self.cancel_url,
             currencyCode = 'USD',
@@ -47,7 +47,7 @@ class TestAdaptivePayments(TestCase):
         self.assertTrue(response.has_key('payKey'))
     
     def test_set_payments_options(self):
-        payKey = self.paypal.pay_request(
+        payKey = self.paypal.pay(
             actionType = 'CREATE',
             cancelUrl = self.cancel_url,
             currencyCode = 'USD',
@@ -76,7 +76,7 @@ class TestAdaptivePayments(TestCase):
         self.assertEquals(response['responseEnvelope']['ack'], "Success")
     
     def test_execute_payments(self):
-        payKey = self.paypal.pay_request(
+        payKey = self.paypal.pay(
             actionType = 'CREATE',
             cancelUrl = self.cancel_url,
             currencyCode = 'USD',
@@ -95,7 +95,7 @@ class TestAdaptivePayments(TestCase):
         self.assertEquals(response['paymentExecStatus'], 'COMPLETED')
     
     def test_payment_details(self):
-        payKey = self.paypal.pay_request(
+        payKey = self.paypal.pay(
             actionType = 'CREATE',
             cancelUrl = self.cancel_url,
             currencyCode = 'USD',
@@ -115,7 +115,7 @@ class TestAdaptivePayments(TestCase):
         self.assertEquals(response['actionType'], 'CREATE')
     
     def test_get_payment_options(self):
-        payKey = self.paypal.pay_request(
+        payKey = self.paypal.pay(
             actionType = 'CREATE',
             cancelUrl = self.cancel_url,
             currencyCode = 'USD',
@@ -185,7 +185,7 @@ class TestAdaptivePayments(TestCase):
         self.assertEquals(response['responseEnvelope']['ack'], "Success")
     
     def test_refund(self):
-        payKey = self.paypal.pay_request(
+        payKey = self.paypal.pay(
             actionType = 'PAY',
             cancelUrl = self.cancel_url,
             currencyCode = 'USD',

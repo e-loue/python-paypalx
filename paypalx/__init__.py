@@ -137,7 +137,7 @@ class AdaptivePayments(AdaptiveAPI):
     def __init__(self, username, password, signature, application_id, email, sandbox=False):
         super(AdaptivePayments, self).__init__(username, password, signature, application_id, email, 'AdaptivePayments', sandbox)
     
-    def pay_request(self, **kwargs):
+    def pay(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
             kwargs['requestEnvelope'] = { }
         required_values = ('actionType', 'cancelUrl', 'currencyCode', 
