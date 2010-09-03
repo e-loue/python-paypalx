@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest import TestCase
-from paypalx.accounts import Accounts
+from paypalx import AdaptiveAccounts
 
 try:
     import credentials
@@ -21,7 +21,7 @@ class TestAdaptiveAccounts(TestCase):
     return_url = "http://return.me"
     
     def setUp(self):
-        self.paypal = Accounts(API_USERNAME, API_PASSWORD, API_SIGNATURE, API_APPLICATION_ID, API_EMAIL, sandbox=True)
+        self.paypal = AdaptiveAccounts(API_USERNAME, API_PASSWORD, API_SIGNATURE, API_APPLICATION_ID, API_EMAIL, sandbox=True)
         self.paypal.debug = False
     
     def test_create_account(self):

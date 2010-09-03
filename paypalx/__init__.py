@@ -5,10 +5,15 @@ import simplejson as json
 from httplib2 import Http
 from urlparse import urljoin
 
+from paypalx.accounts import AdaptiveAccounts
+from paypalx.payments import AdaptivePayments
+
 X_PAYPAL_ERROR_RESPONSE = {
     'TRUE':True,
     'FALSE':False
 }
+
+__all__ = ['PaypalError', 'DecodeError', 'AdaptivePayments', 'AdaptiveAccounts']
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, obj):

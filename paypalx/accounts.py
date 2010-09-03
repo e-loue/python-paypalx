@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from paypalx import AdaptiveAPI
 
-class Accounts(AdaptiveAPI):
+class AdaptiveAccounts(AdaptiveAPI):
     def __init__(self, username, password, signature, application_id, email, sandbox=False):
-        super(Accounts, self).__init__(username, password, signature, application_id, email, 'AdaptiveAccounts', sandbox)
+        super(AdaptiveAccounts, self).__init__(username, password, signature, application_id, email, 'AdaptiveAccounts', sandbox)
     
     def create_account(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
