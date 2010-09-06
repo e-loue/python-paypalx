@@ -75,7 +75,7 @@ class TestAdaptivePayments(TestCase):
         )
         self.assertEquals(response['responseEnvelope']['ack'], "Success")
     
-    def test_execute_payments(self):
+    def test_execute_payment(self):
         payKey = self.paypal.pay(
             actionType = 'CREATE',
             cancelUrl = self.cancel_url,
@@ -88,7 +88,7 @@ class TestAdaptivePayments(TestCase):
             returnUrl = self.return_url,
             ipnNotificationUrl = self.notification_url
         )['payKey']
-        response = self.paypal.execute_payments(
+        response = self.paypal.execute_payment(
             payKey = payKey
         )
         self.assertEquals(response['responseEnvelope']['ack'], "Success")

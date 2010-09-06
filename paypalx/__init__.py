@@ -154,7 +154,7 @@ class AdaptivePayments(AdaptiveAPI):
         endpoint = self._endpoint('SetPaymentOptions')
         return self._request(endpoint, data=kwargs)
     
-    def execute_payments(self, **kwargs):
+    def execute_payment(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
             kwargs['requestEnvelope'] = { }
         required_values = ('payKey',)
