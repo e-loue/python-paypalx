@@ -18,7 +18,7 @@ KEYWORDS = 'paypal api x adaptive paiements accounts'
 setup(name = 'paypalx',
     version = VERSION,
     description = 'Paypal X API implementation in Python.',
-    long_description = """An inmplemtation of Paypal X's API in Python. Featuring
+    long_description = """An implementation of Paypal X's API in Python. Featuring
     Adaptive API""",
     author = 'Timothee Peignier',
     author_email = 'timothee.peignier@e-loue.com',
