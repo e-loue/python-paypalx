@@ -6,11 +6,12 @@ from httplib2 import Http
 from urlparse import urljoin
 
 X_PAYPAL_ERROR_RESPONSE = {
-    'TRUE':True,
-    'FALSE':False
+    'TRUE': True,
+    'FALSE': False
 }
 
 __all__ = ['PaypalError', 'DecodeError', 'AdaptivePayments', 'AdaptiveAccounts']
+
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -92,14 +93,14 @@ class AdaptiveAPI(object):
             return socket.gethostbyname(socket.gethostname())
         
         headers = {
-            'X-PAYPAL-SECURITY-USERID':self.username,
-            'X-PAYPAL-SECURITY-PASSWORD':self.password,
-            'X-PAYPAL-SECURITY-SIGNATURE':self.signature,
-            'X-PAYPAL-APPLICATION-ID':self.application_id,
-            'X-PAYPAL-SANDBOX-EMAIL-ADDRESS':self.email,
-            'X-PAYPAL-DEVICE-IPADDRESS':device_ip(), 
-            'X-PAYPAL-REQUEST-DATA-FORMAT':'JSON',
-            'X-PAYPAL-RESPONSE-DATA-FORMAT':'JSON'
+            'X-PAYPAL-SECURITY-USERID': self.username,
+            'X-PAYPAL-SECURITY-PASSWORD': self.password,
+            'X-PAYPAL-SECURITY-SIGNATURE': self.signature,
+            'X-PAYPAL-APPLICATION-ID': self.application_id,
+            'X-PAYPAL-SANDBOX-EMAIL-ADDRESS': self.email,
+            'X-PAYPAL-DEVICE-IPADDRESS': device_ip(),
+            'X-PAYPAL-REQUEST-DATA-FORMAT': 'JSON',
+            'X-PAYPAL-RESPONSE-DATA-FORMAT': 'JSON'
         }
         
         if self.debug:
@@ -139,8 +140,8 @@ class AdaptivePayments(AdaptiveAPI):
     
     def pay(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
-        required_values = ('actionType', 'cancelUrl', 'currencyCode', 
+            kwargs['requestEnvelope'] = {}
+        required_values = ('actionType', 'cancelUrl', 'currencyCode',
             'receiverList', 'returnUrl')
         self._check_required(required_values, **kwargs)
         endpoint = self._endpoint('Pay')
@@ -148,7 +149,7 @@ class AdaptivePayments(AdaptiveAPI):
     
     def set_payments_options(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         required_values = ('payKey',)
         self._check_required(required_values, **kwargs)
         endpoint = self._endpoint('SetPaymentOptions')
@@ -156,7 +157,7 @@ class AdaptivePayments(AdaptiveAPI):
     
     def execute_payment(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         required_values = ('payKey',)
         self._check_required(required_values, **kwargs)
         endpoint = self._endpoint('ExecutePayment')
@@ -164,13 +165,13 @@ class AdaptivePayments(AdaptiveAPI):
     
     def payment_details(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         endpoint = self._endpoint('PaymentDetails')
         return self._request(endpoint, data=kwargs)
     
     def get_payment_options(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         required_values = ('payKey',)
         self._check_required(required_values, **kwargs)
         endpoint = self._endpoint('GetPaymentOptions')
@@ -178,7 +179,7 @@ class AdaptivePayments(AdaptiveAPI):
     
     def preapproval(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         required_values = ('endingDate', 'startingDate', 'currencyCode',
             'maxTotalAmountOfAllPayments', 'cancelUrl', 'returnUrl')
         self._check_required(required_values, **kwargs)
@@ -187,7 +188,7 @@ class AdaptivePayments(AdaptiveAPI):
     
     def preapproval_details(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         required_values = ('preapprovalKey',)
         self._check_required(required_values, **kwargs)
         endpoint = self._endpoint('PreapprovalDetails')
@@ -195,7 +196,7 @@ class AdaptivePayments(AdaptiveAPI):
     
     def cancel_preapproval(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         required_values = ('preapprovalKey',)
         self._check_required(required_values, **kwargs)
         endpoint = self._endpoint('CancelPreapproval')
@@ -203,13 +204,13 @@ class AdaptivePayments(AdaptiveAPI):
     
     def refund(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         endpoint = self._endpoint('Refund')
         return self._request(endpoint, data=kwargs)
     
     def convert_currency(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         required_values = ('baseAmountList', 'convertToCurrencyList')
         self._check_required(required_values, **kwargs)
         endpoint = self._endpoint('ConvertCurrency')
@@ -222,7 +223,7 @@ class AdaptiveAccounts(AdaptiveAPI):
     
     def create_account(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         required_values = ('accountType', 'address', 'citizenshipCountryCode',
             'contactPhoneNumber', 'createAccountWebOptions', 'currencyCode',
             'dateOfBirth', 'name', 'preferredLanguageCode', 'requestEnvelope')
@@ -232,7 +233,7 @@ class AdaptiveAccounts(AdaptiveAPI):
     
     def add_bank_account(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         required_values = ('confirmationType', 'bankCountryCode', 'requestEnvelope')
         self._check_required(required_values, **kwargs)
         endpoint = self._endpoint('AddBankingAccount')
@@ -240,7 +241,7 @@ class AdaptiveAccounts(AdaptiveAPI):
     
     def add_payment_card(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         required_values = ('billingAddress', 'cardType', 'cardNumber',
             'confirmationType', 'nameOnCard', 'expirationDate')
         self._check_required(required_values, **kwargs)
@@ -249,7 +250,7 @@ class AdaptiveAccounts(AdaptiveAPI):
     
     def set_funding_source_confirmed(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         required_values = ('fundingSourceKey',)
         self._check_required(required_values, **kwargs)
         endpoint = self._endpoint('SetFundingSourceConfirmed')
@@ -257,7 +258,7 @@ class AdaptiveAccounts(AdaptiveAPI):
     
     def get_verified_status(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         required_values = ('emailAddress', 'firstName', 'lastName', 'matchCriteria')
         self._check_required(required_values, **kwargs)
         endpoint = self._endpoint('GetVerifiedStatus')
@@ -265,7 +266,7 @@ class AdaptiveAccounts(AdaptiveAPI):
     
     def get_user_agreement(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
-            kwargs['requestEnvelope'] = { }
+            kwargs['requestEnvelope'] = {}
         endpoint = self._endpoint('GetUserAgreement')
         return self._request(endpoint, data=kwargs)
     
