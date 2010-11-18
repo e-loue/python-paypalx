@@ -224,9 +224,11 @@ class AdaptiveAccounts(AdaptiveAPI):
     def create_account(self, **kwargs):
         if 'requestEnvelope' not in kwargs:
             kwargs['requestEnvelope'] = {}
+        if 'sandboxEmailAddress' not in kwargs:
+            kwargs['sandboxEmailAddress'] = self.email
         required_values = ('accountType', 'address', 'citizenshipCountryCode',
             'contactPhoneNumber', 'createAccountWebOptions', 'currencyCode',
-            'dateOfBirth', 'name', 'preferredLanguageCode', 'requestEnvelope')
+            'name', 'preferredLanguageCode', 'requestEnvelope')
         self._check_required(required_values, **kwargs)
         endpoint = self._endpoint('CreateAccount')
         return self._request(endpoint, data=kwargs)
